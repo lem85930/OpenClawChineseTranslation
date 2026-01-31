@@ -693,6 +693,42 @@ openclaw --version  # 应提示命令不存在
 
 启动 OpenClaw 后，访问 `http://localhost:18789` 即可打开网页控制台（全中文界面）。
 
+### Q: Dashboard 连接显示 `pairing required` 怎么办？
+
+这是 OpenClaw 的**设备配对安全机制**。每个浏览器首次连接 Gateway 时，需要管理员批准配对请求。
+
+**解决步骤：**
+
+```bash
+# 1. 查看待配对的设备列表
+docker exec openclaw openclaw devices list --password '你的网关密码'
+# 会显示 Pending (待批准) 和 Paired (已配对) 两个表格
+
+# 2. 复制 Pending 表格中的 Request ID，批准配对
+docker exec openclaw openclaw devices approve <Request-ID>
+
+# 3. 在 Dashboard 页面点击"连接"按钮，即可成功连接
+```
+
+**示例：**
+
+```bash
+# 查看设备列表
+$ docker exec openclaw openclaw devices list --password 'mytoken123'
+Pending (1)
+┌──────────────────────────────────────┬─────────────┬──────────┐
+│ Request                              │ Device      │ Role     │
+├──────────────────────────────────────┼─────────────┼──────────┤
+│ 693d5641-e67f-4fa5-a096-25551ac5fe4b │ f1e3aa21... │ operator │
+└──────────────────────────────────────┴─────────────┴──────────┘
+
+# 批准配对请求
+$ docker exec openclaw openclaw devices approve 693d5641-e67f-4fa5-a096-25551ac5fe4b
+Approved f1e3aa21...
+```
+
+> 💡 **提示**：刷新页面、换浏览器、清除缓存或使用无痕模式都会产生新的设备 ID，需要重新批准配对。
+
 ### Q: Docker 拉取镜像提示 denied？
 
 清理 Docker 登录缓存后重试：
