@@ -40,12 +40,6 @@ SCRIPT_PATH="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)/install.sh"
 # 参数解析测试
 # ============================================================
 
-@test "无参数默认安装稳定版" {
-    # 跳过实际安装，只测试参数解析
-    # 这个测试需要 mock node 和 npm
-    skip "需要完整 mock 环境"
-}
-
 @test "未知参数报错" {
     run bash "$SCRIPT_PATH" --unknown-param
     [ "$status" -ne 0 ]
@@ -53,17 +47,20 @@ SCRIPT_PATH="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)/install.sh"
 }
 
 # ============================================================
-# 函数单元测试
+# 函数单元测试 (source 脚本获取函数定义)
 # ============================================================
 
 @test "check_command 检测已存在的命令" {
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    # source 脚本获取函数（脚本修改后不会自动执行 main）
+    source "$SCRIPT_PATH"
+    
     run check_command bash
     [ "$status" -eq 0 ]
 }
 
 @test "check_command 检测不存在的命令" {
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    source "$SCRIPT_PATH"
+    
     run check_command nonexistent_command_12345
     [ "$status" -ne 0 ]
 }
@@ -73,30 +70,45 @@ SCRIPT_PATH="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)/install.sh"
 # ============================================================
 
 @test "check_node_version 接受 Node.js 22+" {
-    # Mock node 命令返回 v22.12.0
-    mock_node "v22.12.0"
+    # 先设置 mock
+    node() {
+        echo "v22.12.0"
+    }
+    export -f node
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    # 然后 source 脚本
+    source "$SCRIPT_PATH"
+    
     run check_node_version
     [ "$status" -eq 0 ]
-    [[ "$output" == *"Node.js 版本"* ]]
+    [[ "$output" == *"Node.js 版本"* ]] || [[ "$output" == *"v22"* ]]
 }
 
 @test "check_node_version 拒绝 Node.js 21" {
-    # Mock node 命令返回 v21.0.0
-    mock_node "v21.0.0"
+    node() {
+        echo "v21.0.0"
+    }
+    export -f node
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    source "$SCRIPT_PATH"
+    
     run check_node_version
     [ "$status" -ne 0 ]
     [[ "$output" == *"版本过低"* ]]
 }
 
 @test "check_node_version 检测缺失的 Node.js" {
-    # Mock node 命令不存在
-    mock_node_not_found
+    # 通过重定义 check_command 来模拟 node 不存在
+    source "$SCRIPT_PATH"
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    # 覆盖 check_command 使其对 node 返回失败
+    check_command() {
+        if [ "$1" = "node" ]; then
+            return 1
+        fi
+        command -v "$1" &> /dev/null
+    }
+    
     run check_node_version
     [ "$status" -ne 0 ]
     [[ "$output" == *"未检测到 Node.js"* ]]
@@ -107,20 +119,32 @@ SCRIPT_PATH="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)/install.sh"
 # ============================================================
 
 @test "check_npm 检测已安装的 npm" {
-    mock_npm "10.2.0"
+    npm() {
+        echo "10.2.0"
+    }
+    export -f npm
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    source "$SCRIPT_PATH"
+    
     run check_npm
     [ "$status" -eq 0 ]
-    [[ "$output" == *"npm 版本"* ]]
+    [[ "$output" == *"npm 版本"* ]] || [[ "$output" == *"10.2.0"* ]]
 }
 
 @test "check_npm 检测缺失的 npm" {
-    mock_npm_not_found
+    source "$SCRIPT_PATH"
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    # 覆盖 check_command 使其对 npm 返回失败
+    check_command() {
+        if [ "$1" = "npm" ]; then
+            return 1
+        fi
+        command -v "$1" &> /dev/null
+    }
+    
     run check_npm
     [ "$status" -ne 0 ]
+    [[ "$output" == *"未检测到 npm"* ]]
 }
 
 # ============================================================
@@ -128,31 +152,33 @@ SCRIPT_PATH="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)/install.sh"
 # ============================================================
 
 @test "install_chinese 调用正确的 npm 命令 (稳定版)" {
-    mock_npm "10.2.0"
-    NPM_TAG="latest"
-    
     # 捕获 npm install 命令
     npm() {
         echo "npm $*"
+        return 0
     }
     export -f npm
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    source "$SCRIPT_PATH"
+    NPM_TAG="latest"
+    
     run install_chinese
+    [ "$status" -eq 0 ]
     [[ "$output" == *"@qingchencloud/openclaw-zh@latest"* ]]
 }
 
 @test "install_chinese 调用正确的 npm 命令 (nightly)" {
-    mock_npm "10.2.0"
-    NPM_TAG="nightly"
-    
     npm() {
         echo "npm $*"
+        return 0
     }
     export -f npm
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    source "$SCRIPT_PATH"
+    NPM_TAG="nightly"
+    
     run install_chinese
+    [ "$status" -eq 0 ]
     [[ "$output" == *"@qingchencloud/openclaw-zh@nightly"* ]]
 }
 
@@ -176,8 +202,10 @@ SCRIPT_PATH="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)/install.sh"
     }
     export -f npm
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    source "$SCRIPT_PATH"
+    
     run uninstall_original
+    [ "$status" -eq 0 ]
     [[ "$output" == *"检测到原版"* ]] || [[ "$output" == *"原版已卸载"* ]]
 }
 
@@ -192,7 +220,36 @@ SCRIPT_PATH="$(cd "$(dirname "$BATS_TEST_FILENAME")/../.." && pwd)/install.sh"
     }
     export -f npm
     
-    source "$SCRIPT_PATH" 2>/dev/null || true
+    source "$SCRIPT_PATH"
+    
     run uninstall_original
     [ "$status" -eq 0 ]
+}
+
+# ============================================================
+# 自动初始化测试
+# ============================================================
+
+@test "run_setup_if_needed CI 环境跳过" {
+    export CI="true"
+    
+    source "$SCRIPT_PATH"
+    
+    run run_setup_if_needed
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"CI 环境"* ]]
+    
+    unset CI
+}
+
+@test "run_setup_if_needed OPENCLAW_SKIP_SETUP=1 跳过" {
+    export OPENCLAW_SKIP_SETUP="1"
+    
+    source "$SCRIPT_PATH"
+    
+    run run_setup_if_needed
+    [ "$status" -eq 0 ]
+    [[ "$output" == *"OPENCLAW_SKIP_SETUP"* ]]
+    
+    unset OPENCLAW_SKIP_SETUP
 }

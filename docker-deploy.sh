@@ -347,4 +347,7 @@ main() {
     print_success
 }
 
-main "$@"
+# 仅在直接执行时运行 main，被 source 时不执行（用于测试）
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi
