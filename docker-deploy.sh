@@ -73,7 +73,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --help            显示帮助信息"
             echo ""
             echo "示例:"
-            echo "  # 远程访问模式（自动配置 allowInsecureAuth）"
+            echo "  # 远程访问模式（自动配置 token 认证）"
             echo "  curl -fsSL .../docker-deploy.sh | bash -s -- --token mytoken123"
             echo ""
             echo "  # 仅本地访问"
@@ -210,9 +210,11 @@ init_config() {
         docker run --rm -v "${VOLUME_NAME}:/root/.openclaw" "$IMAGE" openclaw config set gateway.bind lan
         echo -e "${GREEN}✓${NC} 设置 gateway.bind = lan"
         
-        # 启用不安全认证（HTTP 访问需要）
-        docker run --rm -v "${VOLUME_NAME}:/root/.openclaw" "$IMAGE" openclaw config set gateway.controlUi.allowInsecureAuth true
-        echo -e "${GREEN}✓${NC} 设置 gateway.controlUi.allowInsecureAuth = true"
+        # 设置访问令牌（用于 Dashboard 认证）
+        if [ -n "$GATEWAY_TOKEN" ]; then
+            docker run --rm -v "${VOLUME_NAME}:/root/.openclaw" "$IMAGE" openclaw config set gateway.auth.token "$GATEWAY_TOKEN"
+            echo -e "${GREEN}✓${NC} 设置 gateway.auth.token"
+        fi
     fi
 }
 

@@ -154,15 +154,15 @@ npm install -g @qingchencloud/openclaw-zh@nightly
 ### 方式 3: Docker 部署
 
 ```bash
-# 拉取并运行 (推荐)
-docker run -d \
-  --name openclaw \
-  -p 18789:18789 \
-  -v openclaw-data:/root/.openclaw \
-  ghcr.io/1186258278/openclaw-zh:nightly
+# 1. 初始化配置（首次运行）
+docker run --rm -v openclaw-data:/root/.openclaw ghcr.io/1186258278/openclaw-zh:nightly openclaw setup
+docker run --rm -v openclaw-data:/root/.openclaw ghcr.io/1186258278/openclaw-zh:nightly openclaw config set gateway.mode local
 
-# 访问 Dashboard
-# http://localhost:18789
+# 2. 启动容器
+docker run -d --name openclaw -p 18789:18789 -v openclaw-data:/root/.openclaw \
+  ghcr.io/1186258278/openclaw-zh:nightly openclaw gateway run
+
+# 访问 Dashboard: http://localhost:18789
 ```
 
 > 📖 详细 Docker 配置请参考下方 [Docker 部署指南](#-docker-部署指南)
@@ -308,18 +308,20 @@ irm https://cdn.jsdelivr.net/gh/1186258278/OpenClawChineseTranslation@main/docke
 适用于在本机运行并通过 `localhost` 访问：
 
 ```bash
-# 基础运行（数据不持久化）
-docker run -d \
-  --name openclaw \
-  -p 18789:18789 \
-  ghcr.io/1186258278/openclaw-zh:nightly
+# 1. 初始化配置（首次运行）
+docker run --rm -v openclaw-data:/root/.openclaw \
+  ghcr.io/1186258278/openclaw-zh:nightly openclaw setup
 
-# 带数据持久化（推荐）
+docker run --rm -v openclaw-data:/root/.openclaw \
+  ghcr.io/1186258278/openclaw-zh:nightly openclaw config set gateway.mode local
+
+# 2. 启动容器
 docker run -d \
   --name openclaw \
   -p 18789:18789 \
   -v openclaw-data:/root/.openclaw \
-  ghcr.io/1186258278/openclaw-zh:nightly
+  ghcr.io/1186258278/openclaw-zh:nightly \
+  openclaw gateway run
 ```
 
 访问：`http://localhost:18789`
@@ -345,21 +347,21 @@ docker run --rm -v openclaw-data:/root/.openclaw \
 docker run --rm -v openclaw-data:/root/.openclaw \
   ghcr.io/1186258278/openclaw-zh:nightly openclaw config set gateway.bind lan
 
+# 4. 设置访问令牌（推荐）
 docker run --rm -v openclaw-data:/root/.openclaw \
-  ghcr.io/1186258278/openclaw-zh:nightly openclaw config set gateway.controlUi.allowInsecureAuth true
+  ghcr.io/1186258278/openclaw-zh:nightly openclaw config set gateway.auth.token your-secure-token
 
-# 4. 启动容器
+# 5. 启动容器
 docker run -d \
   --name openclaw \
   -p 18789:18789 \
   -v openclaw-data:/root/.openclaw \
-  -e OPENCLAW_GATEWAY_TOKEN=your-secure-token \
   --restart unless-stopped \
   ghcr.io/1186258278/openclaw-zh:nightly \
   openclaw gateway run
 ```
 
-访问：`http://服务器IP:18789?token=your-secure-token`
+访问：`http://服务器IP:18789` → 在 Dashboard 输入 token 连接
 
 ### 远程访问注意事项 ⚠️ 重要
 

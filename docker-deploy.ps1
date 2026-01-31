@@ -45,7 +45,7 @@ if ($Help) {
     Write-Host "  -Help            显示帮助信息"
     Write-Host ""
     Write-Host "示例:"
-    Write-Host "  # 远程访问模式（自动配置 allowInsecureAuth）"
+    Write-Host "  # 远程访问模式（自动配置 token 认证）"
     Write-Host "  & ([scriptblock]::Create((irm .../docker-deploy.ps1))) -Token 'mytoken123'"
     Write-Host ""
     Write-Host "  # 仅本地访问"
@@ -178,9 +178,11 @@ function Initialize-Config {
         docker run --rm -v "${VolumeName}:/root/.openclaw" $Image openclaw config set gateway.bind lan
         Write-Host "✓ 设置 gateway.bind = lan" -ForegroundColor Green
         
-        # 启用不安全认证
-        docker run --rm -v "${VolumeName}:/root/.openclaw" $Image openclaw config set gateway.controlUi.allowInsecureAuth true
-        Write-Host "✓ 设置 gateway.controlUi.allowInsecureAuth = true" -ForegroundColor Green
+        # 设置访问令牌（用于 Dashboard 认证）
+        if ($Token) {
+            docker run --rm -v "${VolumeName}:/root/.openclaw" $Image openclaw config set gateway.auth.token $Token
+            Write-Host "✓ 设置 gateway.auth.token" -ForegroundColor Green
+        }
     }
 }
 

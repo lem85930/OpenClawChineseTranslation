@@ -697,9 +697,13 @@ curl -fsSL https://cdn.jsdelivr.net/gh/1186258278/OpenClawChineseTranslation@mai
                         <button class="copy-btn" onclick="copyCode(this)">复制</button>
                     </div>
                     
-                    <div class="code-label">快速启动（本地访问）</div>
+                    <div class="code-label">快速启动（本地访问，需先初始化）</div>
                     <div class="code-block">
-                        <code>docker run -d --name openclaw -p 18789:18789 -v openclaw-data:/root/.openclaw ghcr.io/1186258278/openclaw-zh:nightly</code>
+                        <code># 1. 初始化配置
+docker run --rm -v openclaw-data:/root/.openclaw ghcr.io/1186258278/openclaw-zh:nightly openclaw setup
+# 2. 设置模式并启动
+docker run --rm -v openclaw-data:/root/.openclaw ghcr.io/1186258278/openclaw-zh:nightly openclaw config set gateway.mode local
+docker run -d --name openclaw -p 18789:18789 -v openclaw-data:/root/.openclaw ghcr.io/1186258278/openclaw-zh:nightly openclaw gateway run</code>
                         <button class="copy-btn" onclick="copyCode(this)">复制</button>
                     </div>
                     

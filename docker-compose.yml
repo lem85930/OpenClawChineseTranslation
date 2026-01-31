@@ -26,23 +26,28 @@ services:
       # 访问令牌（推荐设置，用于 Dashboard 认证）
       - OPENCLAW_GATEWAY_TOKEN=${OPENCLAW_GATEWAY_TOKEN:-}
     restart: unless-stopped
+    # 默认启动 gateway（首次需要初始化，见下方说明）
+    command: openclaw gateway run --allow-unconfigured
     # 
+    # ========== 首次使用说明 ==========
+    # 
+    # 1. 首次启动后，建议初始化配置：
+    #    docker-compose exec openclaw openclaw setup
+    #    docker-compose exec openclaw openclaw config set gateway.mode local
+    #    docker-compose restart
+    #
     # ========== 远程访问配置 ==========
     # 
-    # 如果需要从其他设备访问（非 localhost），需要：
-    # 1. 首次启动后，执行以下命令初始化远程访问配置：
-    #    docker-compose exec openclaw openclaw config set gateway.mode local
+    # 如果需要从其他设备访问（非 localhost），还需要：
     #    docker-compose exec openclaw openclaw config set gateway.bind lan
-    #    docker-compose exec openclaw openclaw config set gateway.controlUi.allowInsecureAuth true
-    # 
-    # 2. 重启容器并使用 gateway run 命令：
-    #    取消下面 command 的注释，然后执行 docker-compose up -d
-    # 
-    # command: openclaw gateway run
+    #    docker-compose exec openclaw openclaw config set gateway.auth.token YOUR_TOKEN
+    #    docker-compose restart
     #
-    # ========== 或者使用一键脚本 ==========
+    # 访问 http://服务器IP:18789，在 Dashboard 输入 token 连接
+    #
+    # ========== 或者使用一键脚本（推荐）==========
     # 
-    # 推荐使用一键部署脚本自动完成所有配置：
+    # 自动完成所有配置：
     #   curl -fsSL https://cdn.jsdelivr.net/gh/1186258278/OpenClawChineseTranslation@main/docker-deploy.sh | bash
     #
 
