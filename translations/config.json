@@ -28,6 +28,9 @@
       "commands/doctor.json",
       "commands/doctor-security.json",
       "commands/doctor-workspace-status.json",
+      "commands/doctor-gateway-health.json",
+      "commands/doctor-state-integrity.json",
+      "commands/doctor-gateway-daemon-flow.json",
       "commands/status.json",
       "commands/update.json",
       "commands/skills.json",
@@ -35,6 +38,9 @@
       "commands/plugin-install.json",
       "commands/channels.json",
       "commands/uninstall.json"
+    ],
+    "daemon": [
+      "daemon/systemd-hints.json"
     ],
     "dashboard": [
       "dashboard/navigation.json",
