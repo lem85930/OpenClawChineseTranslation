@@ -28,9 +28,31 @@ POSSIBLE_BUILD_DIRS = [
 
 def find_build_dir():
     """查找构建目录"""
+    # 先尝试固定路径
     for path in POSSIBLE_BUILD_DIRS:
         if os.path.exists(path):
             return path
+    
+    # 动态查找 control-ui 目录
+    import subprocess
+    try:
+        result = subprocess.run(
+            ['find', '.', '-name', 'control-ui', '-type', 'd'],
+            capture_output=True, text=True, timeout=30
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            paths = result.stdout.strip().split('\n')
+            for path in paths:
+                if 'dist' in path and os.path.isdir(path):
+                    return path
+    except Exception as e:
+        print(f"⚠️ find 命令失败: {e}")
+    
+    # 尝试查找任何包含 assets 子目录的 dist 目录
+    for root, dirs, files in os.walk('.'):
+        if 'assets' in dirs and 'dist' in root:
+            return root
+    
     return None
 
 BUILD_DIR = find_build_dir()
@@ -62,6 +84,18 @@ def inject_panel():
         print(f"\n当前工作目录: {os.getcwd()}")
         print(f"脚本目录: {SCRIPT_DIR}")
         print(f"ROOT_DIR: {ROOT_DIR}")
+        
+        # 列出当前目录结构帮助调试
+        print("\n📁 当前目录结构:")
+        for item in os.listdir('.'):
+            print(f"   {item}/") if os.path.isdir(item) else print(f"   {item}")
+        
+        if os.path.exists('openclaw'):
+            print("\n📁 openclaw/ 目录结构:")
+            for item in os.listdir('openclaw'):
+                full_path = os.path.join('openclaw', item)
+                print(f"   {item}/") if os.path.isdir(full_path) else print(f"   {item}")
+        
         sys.exit(1)
     
     print(f"📁 构建目录: {os.path.abspath(BUILD_DIR)}")
