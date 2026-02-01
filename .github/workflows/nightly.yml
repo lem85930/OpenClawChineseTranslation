@@ -116,6 +116,36 @@ jobs:
           pnpm run build
           echo "✅ 构建完成"
 
+      - name: 修复构建产物中的图标
+        run: |
+          # 内嵌 SVG 图标（替换 CDN URL）
+          SVG_ICON='<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16" style="display:block"><rect width="16" height="16" fill="none"/><g fill="#3a0a0d"><rect x="1" y="5" width="1" height="3"/><rect x="2" y="4" width="1" height="1"/><rect x="2" y="8" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="4" y="2" width="1" height="1"/><rect x="4" y="10" width="1" height="1"/><rect x="5" y="2" width="6" height="1"/><rect x="11" y="2" width="1" height="1"/><rect x="12" y="3" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/><rect x="13" y="8" width="1" height="1"/><rect x="14" y="5" width="1" height="3"/><rect x="5" y="11" width="6" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="11" y="12" width="1" height="1"/><rect x="3" y="13" width="1" height="1"/><rect x="12" y="13" width="1" height="1"/><rect x="5" y="14" width="6" height="1"/></g><g fill="#ff4f40"><rect x="5" y="3" width="6" height="1"/><rect x="4" y="4" width="8" height="1"/><rect x="3" y="5" width="10" height="1"/><rect x="3" y="6" width="10" height="1"/><rect x="3" y="7" width="10" height="1"/><rect x="4" y="8" width="8" height="1"/><rect x="5" y="9" width="6" height="1"/><rect x="5" y="12" width="6" height="1"/><rect x="6" y="13" width="4" height="1"/></g><g fill="#ff775f"><rect x="1" y="6" width="2" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="13" y="6" width="2" height="1"/><rect x="13" y="5" width="1" height="1"/><rect x="13" y="7" width="1" height="1"/></g><g fill="#081016"><rect x="6" y="5" width="1" height="1"/><rect x="9" y="5" width="1" height="1"/></g><g fill="#f5fbff"><rect x="6" y="4" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/></g></svg>'
+          
+          # 查找并替换构建产物中的 CDN 图标
+          for js_file in openclaw/dist/control-ui/assets/*.js; do
+            if [ -f "$js_file" ]; then
+              if grep -q "mintcdn.com" "$js_file"; then
+                echo "🔧 修复图标: $js_file"
+                # 使用 Python 进行安全替换（避免 sed 转义问题）
+                python3 << PYEOF
+import re
+with open("$js_file", "r", encoding="utf-8") as f:
+    content = f.read()
+# 匹配 CDN 图标的 img 标签
+pattern = r'<img src="https://mintcdn\.com/[^"]*pixel-lobster\.svg[^"]*" alt="OpenClaw" />'
+new_content = re.sub(pattern, '''$SVG_ICON''', content)
+if content != new_content:
+    with open("$js_file", "w", encoding="utf-8") as f:
+        f.write(new_content)
+    print("✅ 图标已替换")
+else:
+    print("ℹ️ 未找到需要替换的图标")
+PYEOF
+              fi
+            fi
+          done
+          echo "✅ 图标修复完成"
+
       - name: 准备 Nightly 版本
         id: prepare
         run: |

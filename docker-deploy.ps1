@@ -297,6 +297,18 @@ function Show-Success {
         Write-Host ""
     }
     
+    Write-Host "❓ 如果遇到 'gateway token mismatch' 错误：" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "   1. 确保使用上面显示的完整 URL（包含 ?token=xxx）"
+    Write-Host "   2. 或在 Dashboard 的「网关令牌」输入框中填入 Token"
+    Write-Host "   3. 点击「连接」按钮"
+    Write-Host ""
+    if ($Token) {
+        Write-Host "   复制此 URL 直接访问：" -ForegroundColor Green
+        Write-Host "   http://${localIP}:${Port}?token=${Token}" -ForegroundColor Cyan
+        Write-Host ""
+    }
+    
     Write-Host "📚 更多信息：" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "   汉化官网: https://openclaw.qt.cool/"

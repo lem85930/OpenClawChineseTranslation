@@ -203,6 +203,19 @@ function Show-Success {
     Write-Host "   开源个人 AI 助手平台，可通过 WhatsApp/Telegram/Discord 等"
     Write-Host "   聊天应用与你的 AI 助手交互，管理邮件、日历、文件等一切事务。"
     Write-Host ""
+    Write-Host "⚠️  远程访问常见问题：" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "   如果 Dashboard 显示 'gateway token mismatch' 错误:"
+    Write-Host ""
+    Write-Host "   方法1: " -ForegroundColor Cyan -NoNewline
+    Write-Host "使用命令自动打开带 token 的 Dashboard"
+    Write-Host "          openclaw dashboard"
+    Write-Host ""
+    Write-Host "   方法2: " -ForegroundColor Cyan -NoNewline
+    Write-Host "手动设置 token 后访问"
+    Write-Host "          openclaw config set gateway.auth.token 你的密码"
+    Write-Host "          然后在浏览器 URL 后加 ?token=你的密码"
+    Write-Host ""
     Write-Host "📚 更多信息：" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "   汉化官网: https://openclaw.qt.cool/"

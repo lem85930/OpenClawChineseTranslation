@@ -317,6 +317,18 @@ print_success() {
         echo ""
     fi
     
+    echo -e "${RED}❓ 如果遇到 'gateway token mismatch' 错误：${NC}"
+    echo ""
+    echo "   1. 确保使用上面显示的完整 URL（包含 ?token=xxx）"
+    echo "   2. 或在 Dashboard 的「网关令牌」输入框中填入 Token"
+    echo "   3. 点击「连接」按钮"
+    echo ""
+    if [ -n "$GATEWAY_TOKEN" ]; then
+        echo -e "   ${GREEN}复制此 URL 直接访问：${NC}"
+        echo -e "   ${CYAN}http://${LOCAL_IP}:${PORT}?token=${GATEWAY_TOKEN}${NC}"
+        echo ""
+    fi
+    
     echo -e "${CYAN}📚 更多信息：${NC}"
     echo ""
     echo "   汉化官网: https://openclaw.qt.cool/"
