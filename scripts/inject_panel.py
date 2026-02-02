@@ -20,21 +20,23 @@ PANEL_DIR = os.path.join(ROOT_DIR, 'translations', 'panel')
 
 # 尝试多个可能的构建目录路径
 POSSIBLE_BUILD_DIRS = [
-    os.path.join(ROOT_DIR, 'openclaw', 'dist', 'control-ui'),  # 标准路径
-    os.path.join(ROOT_DIR, 'openclaw', 'dist', 'gateway', 'control-ui'),  # 新路径1
-    os.path.join(ROOT_DIR, 'openclaw', 'dist', 'web'),  # 新路径2
+    os.path.join(ROOT_DIR, 'openclaw', 'dist', 'control-ui'),  # 旧版标准路径
+    os.path.join(ROOT_DIR, 'openclaw', 'dist', 'canvas-host', 'a2ui'),  # 新版路径
+    os.path.join(ROOT_DIR, 'openclaw', 'dist', 'gateway', 'control-ui'),  # 备选路径1
+    os.path.join(ROOT_DIR, 'openclaw', 'dist', 'web'),  # 备选路径2
     os.path.join(ROOT_DIR, 'dist', 'control-ui'),              # 备选路径
     'openclaw/dist/control-ui',                                  # 相对路径
+    'openclaw/dist/canvas-host/a2ui',                            # 新版相对路径
     'openclaw/dist/gateway/control-ui',                          # 相对路径新
     'openclaw/dist/web',                                          # 相对路径新
     'dist/control-ui',                                           # 相对路径备选
 ]
 
 def is_dashboard_dir(path):
-    """检查是否是 Dashboard 目录（包含 index.html 和 assets）"""
-    assets_dir = os.path.join(path, 'assets')
+    """检查是否是 Dashboard 目录（包含 index.html，assets 可选）"""
     index_html = os.path.join(path, 'index.html')
-    return os.path.isdir(assets_dir) and os.path.isfile(index_html)
+    # 新版可能没有 assets 目录，只检查 index.html
+    return os.path.isfile(index_html)
 
 def find_build_dir():
     """查找构建目录"""
@@ -114,10 +116,17 @@ def inject_panel():
     
     print(f"📁 构建目录: {os.path.abspath(BUILD_DIR)}")
     
+    # 查找 assets 目录或直接使用构建目录
     assets_dir = os.path.join(BUILD_DIR, 'assets')
     if not os.path.exists(assets_dir):
-        print(f"❌ assets 目录不存在: {assets_dir}")
-        sys.exit(1)
+        print(f"⚠️ assets 目录不存在: {assets_dir}")
+        print(f"📁 尝试直接在构建目录中查找 JS 文件...")
+        # 列出构建目录内容
+        print(f"📁 构建目录内容:")
+        for item in os.listdir(BUILD_DIR):
+            print(f"   {item}")
+        # 使用构建目录本身作为 assets 目录
+        assets_dir = BUILD_DIR
     
     # 读取面板资源
     print("\n📦 读取面板资源...")

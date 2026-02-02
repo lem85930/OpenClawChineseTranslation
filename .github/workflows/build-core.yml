@@ -163,6 +163,12 @@ jobs:
           echo "🔍 搜索所有 assets 目录 (排除 node_modules):"
           find openclaw/dist -name "assets" -type d ! -path "*/node_modules/*" 2>/dev/null | head -10
           echo ""
+          echo "📁 canvas-host/a2ui 目录内容 (如果存在):"
+          ls -la openclaw/dist/canvas-host/a2ui/ 2>/dev/null || echo "❌ 目录不存在"
+          echo ""
+          echo "🔍 搜索所有 .js 文件 (排除 node_modules):"
+          find openclaw/dist -name "*.js" ! -path "*/node_modules/*" -type f 2>/dev/null | grep -E "(index|main|app)" | head -10
+          echo ""
           echo "🦞 开始注入功能面板..."
           python3 scripts/inject_panel.py
           echo ""
