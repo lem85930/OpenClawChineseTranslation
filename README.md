@@ -198,7 +198,7 @@ yarn global add @qingchencloud/openclaw-zh@latest
 | **`pairing required`** | `openclaw devices list` 然后 `openclaw devices approve <ID>` | [查看](docs/FAQ.md#pairing-required--设备配对) |
 | **远程 / 内网访问不了** | `openclaw config set gateway.bind lan` + 设置 Token + 重启 | [查看](docs/FAQ.md#npm-安装后内网其他电脑无法访问) |
 | **`Missing config`** | 运行 `openclaw onboard` 初始化 | [查看](docs/FAQ.md#missing-config-run-openclaw-setup) |
-| **`Missing workspace template`** | 升级到最新版：`npm install -g @qingchencloud/openclaw-zh@latest` | [查看](docs/FAQ.md#missing-workspace-template-agentsmd) |
+| **`Missing workspace template`** | `2026.2.4-zh.1` 及更早版本的已知 Bug，升级即可修复：`npm install -g @qingchencloud/openclaw-zh@latest` | [查看](docs/FAQ.md#missing-workspace-template-agentsmd) |
 | **Ollama 无响应** | 检查 baseURL 配置是否为 `http://localhost:11434/v1` | [查看](docs/FAQ.md#本地-ollama-模型调用无响应) |
 
 > **[完整排查手册 (25+ 个问题)](docs/FAQ.md)** | [Docker 问题排查](docs/DOCKER_GUIDE.md#常见错误排查)
