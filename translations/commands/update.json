@@ -1,7 +1,8 @@
 {
   "file": "src/cli/update-cli.ts",
-  "description": "更新命令输出",
+  "description": "更新命令输出 + 汉化版包名修复",
   "replacements": {
+    "const CORE_PACKAGE_NAMES = new Set([DEFAULT_PACKAGE_NAME]);": "const CORE_PACKAGE_NAMES = new Set([DEFAULT_PACKAGE_NAME, \"@qingchencloud/openclaw-zh\"]);",
     "theme.heading(\"OpenClaw update status\")": "theme.heading(\"OpenClaw 更新状态\")",
     "theme.heading(\"Updating OpenClaw...\")": "theme.heading(\"正在更新 OpenClaw...\")",
     "theme.heading(\"Updating plugins...\")": "theme.heading(\"正在更新插件...\")",
