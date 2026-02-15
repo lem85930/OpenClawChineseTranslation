@@ -155,6 +155,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         continue-on-error: true
 
+      - name: 同步 npmmirror 镜像源
+        run: |
+          echo "🔄 触发 npmmirror 同步..."
+          # 主动触发 npmmirror 同步，解决国内镜像源版本滞后问题
+          # 参考: https://github.com/1186258278/OpenClawChineseTranslation/issues/32
+          curl -sX PUT "https://registry-direct.npmmirror.com/-/package/@qingchencloud/openclaw-zh/syncs" || true
+          echo "✅ 已触发 npmmirror 同步"
+        continue-on-error: true
+
       - name: 删除旧的 nightly 标签
         run: |
           git push origin :refs/tags/nightly || true

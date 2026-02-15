@@ -115,6 +115,25 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: 同步 npmmirror 镜像源
+        run: |
+          echo "🔄 触发 npmmirror 同步..."
+          # 主动触发 npmmirror 同步，解决国内镜像源版本滞后问题
+          # 参考: https://github.com/1186258278/OpenClawChineseTranslation/issues/32
+          curl -sX PUT "https://registry-direct.npmmirror.com/-/package/@qingchencloud/openclaw-zh/syncs" || true
+          echo "⏳ 等待 30 秒让同步生效..."
+          sleep 30
+          # 验证同步结果
+          MIRROR_VER=$(curl -s "https://registry.npmmirror.com/@qingchencloud/openclaw-zh/latest" | jq -r '.version // "unknown"')
+          echo "📦 npmmirror 当前版本: $MIRROR_VER"
+          echo "📦 本次发布版本: ${{ needs.prepare.outputs.release_version }}"
+          if [ "$MIRROR_VER" = "${{ needs.prepare.outputs.release_version }}" ]; then
+            echo "✅ npmmirror 同步成功！"
+          else
+            echo "⚠️ npmmirror 尚未同步到最新版本，可能需要几分钟"
+          fi
+        continue-on-error: true
+
       - name: 创建 GitHub Release
         uses: softprops/action-gh-release@v1
         with:
