@@ -159,7 +159,7 @@ jobs:
       - name: 构建 OpenClaw
         working-directory: openclaw
         run: |
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm run build
           echo "✅ 核心构建完成"
           
