@@ -2,8 +2,6 @@
   "file": "src/commands/auth-choice.apply.xai.ts",
   "description": "xAI (Grok) 认证配置",
   "replacements": {
-    "`Default model set to ${model} for agent \"${params.agentId}\".`": "`已为代理 \"${params.agentId}\" 设置默认模型为 ${model}。`",
-    "\"Model configured\"": "\"模型已配置\"",
     "`Use existing XAI_API_KEY (${envKey.source}, ${formatApiKeyPreview(envKey.apiKey)})?`": "`使用已有的 XAI_API_KEY（${envKey.source}, ${formatApiKeyPreview(envKey.apiKey)}）？`",
     "message: \"Enter xAI API key\"": "message: \"输入 xAI API 密钥\""
   }

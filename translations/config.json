@@ -23,6 +23,12 @@
       "wizard/finalize.json",
       "wizard/onboarding-finalize.json"
     ],
+    "gateway": [
+      "gateway/gateway-config-prompts.shared.json"
+    ],
+    "shared": [
+      "shared/net/ipv4.json"
+    ],
     "tui": [
       "tui/waiting.json",
       "tui/commands.json"
@@ -50,7 +56,8 @@
       "commands/channels.json",
       "commands/uninstall.json",
       "commands/package-root-fix.json",
-      "commands/model-picker.json"
+      "commands/model-picker.json",
+      "commands/auth-choice-apply-helpers.json"
     ],
     "daemon": [
       "daemon/systemd-hints.json",
@@ -86,7 +93,8 @@
       "dashboard/config-form-node.json",
       "dashboard/config-form-shared.json",
       "dashboard/agents.json",
-      "dashboard/usage.json"
+      "dashboard/usage.json",
+      "dashboard/skills-shared.json"
     ],
     "extensions": [
       "extensions/feishu.json",

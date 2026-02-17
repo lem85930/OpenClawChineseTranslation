@@ -1,0 +1,8 @@
+{
+  "file": "src/commands/auth-choice.apply-helpers.ts",
+  "description": "认证应用通用工具函数（模型配置提示等）",
+  "replacements": {
+    "`Default model set to ${model} for agent \"${params.agentId}\".`": "`默认模型已设置为 ${model}，用于智能体 \"${params.agentId}\"。`",
+    "\"Model configured\"": "\"模型已配置\""
+  }
+}
