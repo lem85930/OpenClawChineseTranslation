@@ -2,7 +2,7 @@
   "file": "src/commands/auth-choice-options.ts",
   "description": "胜算云认证菜单 - 在顶层提供商分组和子选项中添加胜算云",
   "replacements": {
-    "value: \"together\",\n    label: \"Together AI\",\n    hint: \"API 密钥\",\n    choices: [\"together-api-key\"],\n  },\n  {\n    value: \"huggingface\"": "value: \"together\",\n    label: \"Together AI\",\n    hint: \"API 密钥\",\n    choices: [\"together-api-key\"],\n  },\n  {\n    value: \"shengsuanyun\",\n    label: \"胜算云 (国产模型)\",\n    hint: \"国内 API 聚合平台\",\n    choices: [\"shengsuanyun-api-key\"],\n  },\n  {\n    value: \"huggingface\"",
+    "value: \"together\",\n    label: \"Together AI\",\n    hint: \"API key\",\n    choices: [\"together-api-key\"],\n  },\n  {\n    value: \"huggingface\"": "value: \"together\",\n    label: \"Together AI\",\n    hint: \"API 密钥\",\n    choices: [\"together-api-key\"],\n  },\n  {\n    value: \"shengsuanyun\",\n    label: \"胜算云 (国产模型)\",\n    hint: \"国内 API 聚合平台\",\n    choices: [\"shengsuanyun-api-key\"],\n  },\n  {\n    value: \"huggingface\"",
     "value: \"together-api-key\",\n    label: \"Together AI API key\",\n    hint: \"Access to Llama, DeepSeek, Qwen, and more open models\",\n  },\n  {\n    value: \"huggingface-api-key\"": "value: \"together-api-key\",\n    label: \"Together AI API key\",\n    hint: \"Access to Llama, DeepSeek, Qwen, and more open models\",\n  },\n  {\n    value: \"shengsuanyun-api-key\",\n    label: \"胜算云 API 密钥\",\n    hint: \"国内 API 聚合平台，新用户注册可获赠体验金\",\n  },\n  {\n    value: \"huggingface-api-key\""
   }
 }

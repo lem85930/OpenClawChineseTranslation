@@ -44,6 +44,6 @@
     "label: \"Finished\"": "label: \"完成\"",
     "hint: selection.length > 0 ? \"Done\" : \"Skip for now\"": "hint: selection.length > 0 ? \"完成\" : \"暂时跳过\"",
     "\"Selected channels\"": "\"已选渠道\"",
-    "`Cannot enable ${channel}: ${result.reason ?? \"插件已禁用\"}.`": "`无法启用 ${channel}: ${result.reason ?? \"插件已禁用\"}。`"
+    "`Cannot enable ${channel}: ${result.reason ?? \"plugin disabled\"}.`": "`无法启用 ${channel}: ${result.reason ?? \"插件已禁用\"}。`"
   }
 }
