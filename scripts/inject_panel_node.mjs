@@ -108,7 +108,21 @@ for (const jsFile of jsFiles) {
   const isMain = mainPatterns.some(p => jsFile.includes(p));
   if (isMain) {
     const jsPath = path.join(assetsDir, jsFile);
-    const content = fs.readFileSync(jsPath, 'utf-8');
+    let content = fs.readFileSync(jsPath, 'utf-8');
+
+    // 修复上游 i18n bug：loadLocale() 检测到非英文 locale 但不自动加载翻译文件
+    // 问题：constructor 调用 loadLocale() 设置 this.locale="zh-CN"，但翻译文件只在 setLocale() 中异步加载
+    //        而 setLocale() 有 guard `if(this.locale!==t)` 导致同 locale 不触发加载
+    // 修复：检测到非英文 locale 且翻译未加载时，临时重置为 "en" 再调用 setLocale
+    const i18nBugPattern = 'this.loadLocale()}loadLocale()';
+    if (content.includes(i18nBugPattern)) {
+      content = content.replace(
+        i18nBugPattern,
+        'this.loadLocale();if(this.locale!=="en"&&!this.translations[this.locale]){const _l=this.locale;this.locale="en";this.setLocale(_l)}}loadLocale()'
+      );
+      console.log('✅ i18n 自动加载修复已注入');
+    }
+
     const next = upsertMarkedBlock(content, INJECT_MARKER, jsToInject);
     if (next.content !== content) {
       fs.writeFileSync(jsPath, next.content);
