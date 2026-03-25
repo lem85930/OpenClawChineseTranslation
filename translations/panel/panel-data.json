@@ -78,15 +78,6 @@
   ],
   "plugins": [
     {
-      "id": "updater",
-      "name": "OpenClaw 自动更新器",
-      "description": "为 OpenClaw 添加自动检测更新和一键升级功能",
-      "version": "1.0.0",
-      "status": "available",
-      "install": "npm install -g @qingchencloud/openclaw-updater",
-      "aiPrompt": "请帮我安装 @qingchencloud/openclaw-updater 插件，这是 OpenClaw 汉化版的自动更新插件"
-    },
-    {
       "id": "zhipu-provider",
       "name": "智谱 GLM 模型提供商",
       "description": "为 OpenClaw 添加智谱 GLM-4 系列模型支持，包括 GLM-4-Plus、GLM-4-Flash（免费）等",
