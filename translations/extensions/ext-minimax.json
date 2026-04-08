@@ -1,6 +1,6 @@
 {
-  "file": "extensions/minimax/index.ts",
-  "description": "MiniMax 扩展认证选项 (v2026.3.22 从 auth-choice 迁移)",
+  "file": "extensions/minimax/provider-registration.ts",
+  "description": "MiniMax 扩展认证选项 (v2026.4.8 迁移到 provider-registration)",
   "replacements": {
     "label: \"MiniMax API key (Global)\"": "label: \"MiniMax API 密钥（国际版）\"",
     "hint: \"Global endpoint - api.minimax.io\"": "hint: \"国际端点 - api.minimax.io\"",

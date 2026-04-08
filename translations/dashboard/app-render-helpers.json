@@ -11,8 +11,6 @@
     "\"Other Sessions\"": "\"其他会话\"",
     "{ id: \"system\", label: \"System\", short: \"SYS\" }": "{ id: \"system\", label: \"系统\", short: \"系统\" }",
     "{ id: \"light\", label: \"Light\", short: \"LIGHT\" }": "{ id: \"light\", label: \"亮色\", short: \"亮色\" }",
-    "aria-label=\"Color mode\"": "aria-label=\"颜色模式\"",
-    "aria-label=\"Theme\"": "aria-label=\"主题\"",
-    "title=\"Theme\"": "title=\"主题\""
+    "aria-label=\"Color mode\"": "aria-label=\"颜色模式\""
   }
 }

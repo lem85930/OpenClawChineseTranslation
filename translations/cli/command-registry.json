@@ -1,5 +1,5 @@
 {
-  "file": "src/cli/program/command-registry.ts",
+  "file": "src/cli/program/core-command-descriptors.ts",
   "description": "CLI 命令注册表 - 顶层命令描述",
   "replacements": {
     "description: \"Initialize local config and agent workspace\"": "description: \"初始化本地配置和代理工作区\"",
@@ -15,7 +15,7 @@
     "description: \"Reset local config/state (keeps the CLI installed)\"": "description: \"重置本地配置/状态（保留 CLI）\"",
     "description: \"Uninstall the gateway service + local data (CLI remains)\"": "description: \"卸载网关服务和本地数据（保留 CLI）\"",
     "description: \"Send, read, and manage messages\"": "description: \"发送、读取和管理消息\"",
-    "description:\n          \"Interactive configuration for credentials, channels, gateway, and agent defaults\"": "description:\n          \"交互式配置凭证、渠道、网关和代理默认设置\"",
-    "description:\n          \"Non-interactive config helpers (get/set/unset/file/validate). Default: starts guided setup.\"": "description:\n          \"非交互式配置工具（get/set/unset/file/validate）。默认：启动引导式设置。\""
+    "description: \"Interactive configuration for credentials, channels, gateway, and agent defaults\"": "description: \"交互式配置凭证、渠道、网关和代理默认设置\"",
+    "description:\n      \"Non-interactive config helpers (get/set/unset/file/validate). Default: starts guided setup.\"": "description:\n      \"非交互式配置工具（get/set/unset/file/validate）。默认：启动引导式设置。\""
   }
 }

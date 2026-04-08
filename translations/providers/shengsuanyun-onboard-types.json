@@ -4,8 +4,8 @@
   "replacements": {
     "| \"custom-api-key\"": "| \"shengsuanyun-api-key\"\n  | \"custom-api-key\"",
 
-    "| \"custom\";": "| \"shengsuanyun\"\n  | \"custom\";",
+    "\"custom\" | (string & {})": "\"shengsuanyun\"\n  | \"custom\" | (string & {})",
 
-    "togetherApiKey?: string;": "togetherApiKey?: string;\n  shengsuanyunApiKey?: string;"
+    "customApiKey?: string;": "customApiKey?: string;\n  shengsuanyunApiKey?: string;"
   }
 }

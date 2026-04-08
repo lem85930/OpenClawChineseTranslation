@@ -1,5 +1,5 @@
 {
-  "file": "src/cli/program/register.subclis.ts",
+  "file": "src/cli/program/subcli-descriptors.ts",
   "description": "CLI 子命令列表说明",
   "replacements": {
     "Run, inspect, and query the WebSocket Gateway": "运行、检查和查询 WebSocket 网关",
