@@ -222,6 +222,8 @@
     "\"tools.web.fetch.provider\": \"Web Fetch Provider\"": "\"tools.web.fetch.provider\": \"网页获取提供商\"",
     "\"gateway.controlUi.basePath\": \"Control UI Base Path\"": "\"gateway.controlUi.basePath\": \"控制面板基础路径\"",
     "\"gateway.controlUi.root\": \"Control UI Assets Root\"": "\"gateway.controlUi.root\": \"控制面板 Assets Root\"",
+    "\"gateway.controlUi.embedSandbox\": \"Control UI Embed Sandbox Mode\"": "\"gateway.controlUi.embedSandbox\": \"控制面板嵌入沙箱模式\"",
+    "\"gateway.controlUi.allowExternalEmbedUrls\": \"Allow External Control UI Embed URLs\"": "\"gateway.controlUi.allowExternalEmbedUrls\": \"允许外部控制面板嵌入 URL\"",
     "\"gateway.controlUi.allowedOrigins\": \"Control UI Allowed Origins\"": "\"gateway.controlUi.allowedOrigins\": \"控制面板允许来源\"",
     "\"gateway.controlUi.allowInsecureAuth\": \"Insecure Control UI Auth Toggle\"": "\"gateway.controlUi.allowInsecureAuth\": \"Insecure 控制面板 Auth Toggle\"",
     "\"gateway.controlUi.dangerouslyDisableDeviceAuth\": \"Dangerously Disable Control UI Device Auth\"": "\"gateway.controlUi.dangerouslyDisableDeviceAuth\": \"Dangerously Disable 控制面板 设备 Auth\"",

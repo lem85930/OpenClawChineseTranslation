@@ -2,8 +2,10 @@
   "file": "ui/src/ui/views/markdown-sidebar.ts",
   "description": "Dashboard Markdown 侧边栏",
   "replacements": {
-    ">Tool Output<": ">工具输出<",
+    "|| \"Render Preview\" : \"Tool Details\"": "|| \"渲染预览\" : \"工具详情\"",
+    "|| \"Render preview\"": "|| \"渲染预览\"",
     ">No content available<": ">暂无内容<",
-    "\"Close sidebar\"": "\"关闭侧边栏\""
+    "\"Close sidebar\"": "\"关闭侧边栏\"",
+    "View Raw Text": "查看原始文本"
   }
 }

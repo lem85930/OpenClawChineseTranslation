@@ -151,7 +151,9 @@
       "dashboard/copy-as-markdown.json",
       "dashboard/speech.json",
       "dashboard/app-render-helpers.json",
-      "dashboard/dreaming-structured.json"
+      "dashboard/dreaming-structured.json",
+      "dashboard/dreaming-ui.json",
+      "dashboard/tool-cards.json"
     ],
     "extensions": [
       "extensions/feishu.json",
