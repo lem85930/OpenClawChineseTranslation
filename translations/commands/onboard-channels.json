@@ -3,11 +3,11 @@
   "description": "渠道初始化引导命令 (channel-setup.ts)",
   "replacements": {
     "\"Channel status\"": "\"渠道状态\"",
-    "message: \"Configure chat channels now?\"": "message: \"现在配置聊天渠道吗？\"",
+    "message: \"Set up a chat channel now?\"": "message: \"现在设置聊天渠道吗？\"",
     "\"plugin disabled\"": "\"插件已禁用\"",
     "\"plugins disabled\"": "\"插件已禁用\"",
     "`${channel} plugin not available.`": "`${channel} 插件不可用。`",
-    "`${channel} does not support guided setup yet.`": "`${channel} 暂不支持引导式设置。`",
+    "`${channel} does not have an interactive setup screen yet. Run ${formatCliCommand(\n          `openclaw channels add --channel ${channel} --help`,\n        )} for supported flags.`": "`${channel} 还没有交互式设置页面。运行 ${formatCliCommand(\n          `openclaw channels add --channel ${channel} --help`,\n        )} 查看支持的参数。`",
     "`${label} does not support deleting config entries.`": "`${label} 不支持删除配置条目。`",
     "message: `Delete ${label} account \"${accountLabel}\"?`": "message: `删除 ${label} 账户 \"${accountLabel}\"?`",
     "message: \"Select channel (QuickStart)\"": "message: \"选择渠道 (快速开始)\"",

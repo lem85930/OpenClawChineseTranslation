@@ -152,7 +152,6 @@
       "dashboard/dreaming-ui.json",
       "dashboard/tool-cards.json",
       "dashboard/chat-status-indicators.json",
-      "dashboard/chat-run-controls.json",
       "dashboard/chat-build-items.json",
       "dashboard/chat-session-controls.json"
     ],

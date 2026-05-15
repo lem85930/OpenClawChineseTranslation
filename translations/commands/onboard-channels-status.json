@@ -8,9 +8,9 @@
     "\"plugin · install\"": "\"插件 · 安装\"",
     "\"bundled · enable to use\"": "\"内置 · 启用后使用\"",
     "\"install plugin to enable\"": "\"安装插件以启用\"",
-    "\"DM security: default is pairing; unknown DMs get a pairing code.\"": "\"私信安全: 默认配对；未知私信将获得配对码。\"",
+    "\"Inbound DM safety defaults to pairing: unknown senders get a pairing code first.\"": "\"入站私信安全默认采用配对：未知发送者需先取得配对码。\"",
     "`Approve with: ${formatCliCommand(\"openclaw pairing approve <channel> <code>\")}`": "`批准命令: ${formatCliCommand(\"openclaw pairing approve <channel> <code>\")}`",
-    "'Public DMs require dmPolicy=\"open\" + allowFrom=[\"*\"].'": "'公开私信需要 dmPolicy=\"open\" + allowFrom=[\"*\"].'",
+    "'Open/public DMs require dmPolicy=\"open\" plus allowFrom=[\"*\"].'": "'开放/公开私信需要 dmPolicy=\"open\" 以及 allowFrom=[\"*\"]。'",
     "\"How channels work\"": "\"渠道工作原理\""
   }
 }
