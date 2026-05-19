@@ -1,5 +1,5 @@
 {
-  "file": "src/cli/gateway-cli/run.ts",
+  "file": "src/cli/gateway-cli/run-command.ts",
   "description": "gateway run 命令及其选项",
   "replacements": {
     ".option(\"--port <port>\", \"Port for the gateway WebSocket\")": ".option(\"--port <port>\", \"网关 WebSocket 端口\")",

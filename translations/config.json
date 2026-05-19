@@ -85,6 +85,7 @@
       "commands/commands-session-abort.json",
       "commands/daemon-install-helpers.json",
       "commands/onboard-channels-clawapp.json",
+      "commands/agent-runtime-label.json",
       "commands/commands-models.json",
       "commands/commands-subagents-main.json",
       "commands/commands-subagents-shared.json",
@@ -153,6 +154,7 @@
       "dashboard/tool-cards.json",
       "dashboard/chat-status-indicators.json",
       "dashboard/chat-build-items.json",
+      "dashboard/session-display.json",
       "dashboard/chat-session-controls.json"
     ],
     "extensions": [

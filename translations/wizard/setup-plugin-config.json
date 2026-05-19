@@ -1,22 +1,5 @@
 {
   "file": "src/wizard/setup.plugin-config.ts",
   "description": "向导 — 插件配置选择 (v2026.4.9)",
-  "replacements": {
-    "\"Configure plugins (select to set up now, or skip)\"": "\"配置插件 (选择要立即设置的，或跳过)\"",
-    "\"Skip for now\"": "\"暂时跳过\"",
-    "\"Continue without configuring plugins\"": "\"不配置插件，继续\"",
-    " field${Object.keys(p.uiHints).length === 1 ? \"\" : \"s\"}": " 个字段",
-    "`Configure ${plugin.name}`": "`配置 ${plugin.name}`",
-    "\"Plugin setup\"": "\"插件设置\"",
-    "\"Sensitive field\"": "\"敏感字段\"",
-    "is sensitive. Set it via:": "是敏感字段。请通过以下方式设置：",
-    "or use the Web UI Settings page.": "或使用 Web UI 设置页面。",
-    "Keep current (": "保持当前值 (",
-    "(comma-separated, empty to clear)": "(逗号分隔，留空清除)",
-    "\"value1, value2\"": "\"值1, 值2\"",
-    "\"No plugins with configurable fields found.\", \"Plugins\"": "\"未找到具有可配置字段的插件。\", \"插件\"",
-    "\"Select plugin to configure\"": "\"选择要配置的插件\"",
-    "totalCount} configured": "totalCount} 已配置",
-    "label: \"Back\", hint: \"Return to section menu\"": "label: \"返回\", hint: \"返回分区菜单\""
-  }
+  "replacements": {}
 }

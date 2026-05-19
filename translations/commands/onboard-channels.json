@@ -2,23 +2,7 @@
   "file": "src/flows/channel-setup.ts",
   "description": "渠道初始化引导命令 (channel-setup.ts)",
   "replacements": {
-    "\"Channel status\"": "\"渠道状态\"",
-    "message: \"Set up a chat channel now?\"": "message: \"现在设置聊天渠道吗？\"",
     "\"plugin disabled\"": "\"插件已禁用\"",
-    "\"plugins disabled\"": "\"插件已禁用\"",
-    "`${channel} plugin not available.`": "`${channel} 插件不可用。`",
-    "`${channel} does not have an interactive setup screen yet. Run ${formatCliCommand(\n          `openclaw channels add --channel ${channel} --help`,\n        )} for supported flags.`": "`${channel} 还没有交互式设置页面。运行 ${formatCliCommand(\n          `openclaw channels add --channel ${channel} --help`,\n        )} 查看支持的参数。`",
-    "`${label} does not support deleting config entries.`": "`${label} 不支持删除配置条目。`",
-    "message: `Delete ${label} account \"${accountLabel}\"?`": "message: `删除 ${label} 账户 \"${accountLabel}\"?`",
-    "message: \"Select channel (QuickStart)\"": "message: \"选择渠道 (快速开始)\"",
-    "label: \"Skip for now\"": "label: \"暂时跳过\"",
-    "hint: `You can add channels later via \\`${formatCliCommand(\"openclaw channels add\")}\\``": "hint: `你可以稍后通过 \\`${formatCliCommand(\"openclaw channels add\")}\\` 添加渠道`",
-    "message: \"Select a channel\"": "message: \"选择一个渠道\"",
-    "label: \"Finished\"": "label: \"完成\"",
-    "hint: selection.length > 0 ? \"Done\" : \"Skip for now\"": "hint: selection.length > 0 ? \"完成\" : \"暂时跳过\"",
-    "\"Selected channels\"": "\"已选渠道\"",
-    "`Cannot enable ${channel}: ${result.reason ?? \"": "`无法启用 ${channel}：${result.reason ?? \"",
-    "plugin not available (continuing with setup). If the channel still doesn't work after setup, run": "插件不可用（继续设置）。如果设置完成后渠道仍无法工作，请运行",
-    "then restart the gateway.": "然后重启网关。"
+    "\"plugins disabled\"": "\"插件已禁用\""
   }
 }

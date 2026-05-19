@@ -2,15 +2,6 @@
   "file": "src/commands/onboarding-plugin-install.ts",
   "description": "插件安装向导（v2026.4.22: 迁移到 onboarding-plugin-install.ts，变量名改为 safeLabel/safeNpmSpec/sanitizeTerminalText）",
   "replacements": {
-    "\"Use local plugin path\"": "\"使用本地插件路径\"",
-    "`Download from npm (${safeNpmSpec})`": "`从 npm 下载 (${safeNpmSpec})`",
-    "{ value: \"skip\", label: \"Skip for now\" }": "{ value: \"skip\", label: \"暂时跳过\" }",
-    "`Install ${safeLabel} plugin?`": "`安装 ${safeLabel} 插件？`",
-    "`Failed to install ${sanitizeTerminalText(clawhubInstallSpec)}: ${summarizeInstallError(result.error)}`": "`安装 ${sanitizeTerminalText(clawhubInstallSpec)} 失败: ${summarizeInstallError(result.error)}`",
-    "\"Plugin install\"": "\"插件安装\"",
-    "`Use local plugin path instead? (${sanitizeTerminalText(localPath)})`": "`使用本地插件路径代替？ (${sanitizeTerminalText(localPath)})`",
-    "`Plugin install failed: ${sanitizeTerminalText(result.error)}`": "`插件安装失败: ${sanitizeTerminalText(result.error)}`",
-    "`Installing ${safeLabel} plugin…`": "`正在安装 ${safeLabel} 插件…`",
-    "`Installed ${safeLabel} plugin`": "`已安装 ${safeLabel} 插件`"
+    "`Plugin install failed: ${sanitizeTerminalText(result.error)}`": "`插件安装失败: ${sanitizeTerminalText(result.error)}`"
   }
 }

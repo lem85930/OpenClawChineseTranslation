@@ -591,8 +591,6 @@
     "\"messages.queue\": \"Inbound Queue\"": "\"messages.queue\": \"Inbound 队列\"",
     "\"messages.queue.mode\": \"Queue Mode\"": "\"messages.queue.mode\": \"队列 模式\"",
     "\"messages.queue.byChannel\": \"Queue Mode by Channel\"": "\"messages.queue.byChannel\": \"队列 模式 by 通道\"",
-    "\"messages.queue.debounceMs\": \"Queue Debounce (ms)\"": "\"messages.queue.debounceMs\": \"队列 防抖 (ms)\"",
-    "\"messages.queue.debounceMsByChannel\": \"Queue Debounce by Channel (ms)\"": "\"messages.queue.debounceMsByChannel\": \"队列 防抖 by 通道 (ms)\"",
     "\"messages.queue.cap\": \"Queue Capacity\"": "\"messages.queue.cap\": \"队列 Capacity\"",
     "\"messages.queue.drop\": \"Queue Drop Strategy\"": "\"messages.queue.drop\": \"队列 Drop Strategy\"",
     "\"messages.inbound\": \"Inbound Debounce\"": "\"messages.inbound\": \"Inbound 防抖\"",
@@ -669,7 +667,6 @@
     "\"mcp.servers\": \"MCP Servers\"": "\"mcp.servers\": \"MCP 服务器\"",
     "\"talk.silenceTimeoutMs\": \"Talk Silence Timeout (ms)\"": "\"talk.silenceTimeoutMs\": \"对话静默超时（ms）\"",
     "\"channels.mattermost\": \"Mattermost\"": "\"channels.mattermost\": \"Mattermost\"",
-    "\"channels.matrix.allowBots\": \"Matrix Allow Bot Messages\"": "\"channels.matrix.allowBots\": \"Matrix 允许机器人消息\"",
     "\"plugins.entries.*.subagent\": \"Plugin Subagent Policy\"": "\"plugins.entries.*.subagent\": \"插件子代理策略\"",
     "\"plugins.entries.*.subagent.allowModelOverride\": \"Allow Plugin Subagent Model Override\"": "\"plugins.entries.*.subagent.allowModelOverride\": \"允许插件子代理模型覆盖\"",
     "\"plugins.entries.*.subagent.allowedModels\": \"Plugin Subagent Allowed Models\"": "\"plugins.entries.*.subagent.allowedModels\": \"插件子代理允许的模型\"",
@@ -800,6 +797,8 @@
     "\"web.whatsapp.connectTimeoutMs\": \"WhatsApp Web Connect Timeout (ms)\"": "\"web.whatsapp.connectTimeoutMs\": \"WhatsApp Web 连接超时（毫秒）\"",
     "\"web.whatsapp.defaultQueryTimeoutMs\": \"WhatsApp Web Query Timeout (ms)\"": "\"web.whatsapp.defaultQueryTimeoutMs\": \"WhatsApp Web 查询超时（毫秒）\"",
     "\"messages.visibleReplies\": \"Visible Replies\"": "\"messages.visibleReplies\": \"可见回复\"",
-    "\"agents.list[].heartbeat.skipWhenBusy\": \"Agent Heartbeat Skip When Busy\"": "\"agents.list[].heartbeat.skipWhenBusy\": \"代理繁忙时跳过心跳\""
+    "\"agents.list[].heartbeat.skipWhenBusy\": \"Agent Heartbeat Skip When Busy\"": "\"agents.list[].heartbeat.skipWhenBusy\": \"代理繁忙时跳过心跳\"",
+    "\"messages.queue.debounceMs\": \"Queue Fallback Debounce (ms)\"": "\"messages.queue.debounceMs\": \"队列回退防抖 (ms)\"",
+    "\"messages.queue.debounceMsByChannel\": \"Queue Fallback Debounce by Channel (ms)\"": "\"messages.queue.debounceMsByChannel\": \"按通道队列回退防抖 (ms)\""
   }
 }

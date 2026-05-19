@@ -2,15 +2,6 @@
   "file": "src/flows/channel-setup.status.ts",
   "description": "渠道引导 - 渠道状态展示 (channel-setup.status.ts)",
   "replacements": {
-    "\"configured (plugin disabled)\"": "\"已配置 (插件已禁用)\"",
-    "\"not configured\"": "\"未配置\"",
-    "\"configured · plugin disabled\"": "\"已配置 · 插件已禁用\"",
-    "\"plugin · install\"": "\"插件 · 安装\"",
-    "\"bundled · enable to use\"": "\"内置 · 启用后使用\"",
-    "\"install plugin to enable\"": "\"安装插件以启用\"",
-    "\"Inbound DM safety defaults to pairing: unknown senders get a pairing code first.\"": "\"入站私信安全默认采用配对：未知发送者需先取得配对码。\"",
-    "`Approve with: ${formatCliCommand(\"openclaw pairing approve <channel> <code>\")}`": "`批准命令: ${formatCliCommand(\"openclaw pairing approve <channel> <code>\")}`",
-    "'Open/public DMs require dmPolicy=\"open\" plus allowFrom=[\"*\"].'": "'开放/公开私信需要 dmPolicy=\"open\" 以及 allowFrom=[\"*\"]。'",
-    "\"How channels work\"": "\"渠道工作原理\""
+    "selectionHint: configured ? \"configured · plugin disabled\" : \"not configured\",": "selectionHint: configured ? \"configured (plugin disabled)\" : \"not configured\","
   }
 }
